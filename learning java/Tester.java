@@ -1,7 +1,7 @@
 public class Tester {
     public static void main(String[] args) {
         Student s1= new Student(); //creates memory location
-        Student s2= new Student();
+        //Student s2= new Student();
         // s1.name = "MARUF";
         // s1.id="444";
         // s2.name = "Fahim";
@@ -24,8 +24,11 @@ public class Tester {
         // System.out.println(s2.id);
         s1.name="Fahim";
         s1.id="443";
-        s1.showdetails(); //this showdetails actually inherits the instance method of main class
-
+        
+        s1.showdetails("114"); //this showdetails actually inherits the instance method of main class
+        
+        s1.cgpa = 5; //instance variable
+        s1.increasecgpa(7);  //local variable
     }
     
 }
@@ -47,3 +50,19 @@ public class Tester {
 // 84840
 // JAHID
 // 84840
+
+
+// //     s1.id="443";
+        
+//         s1.showdetails("114"); //this showdetails actually inherits the instance method of main class
+        
+//         s1.cgpa = 5; //instance variable
+//         s1.increasecgpa(7);  //local variable
+//     }
+
+// Output --->
+// // Fahim
+// // 114
+// // 114
+// // 14
+// // 5
