@@ -17,5 +17,15 @@ public void  increasecgpa(int cgpa)
    System.out.println(cgpa);
 
    System.out.println(this.cgpa);  //this cgpa refers to the instance variable . so this willprint 5. This is called variable shadowing
+
 }
+public int addcgpa(int a, int b)
+{
+    return a+b;
+}
+public String addcgpa(String a, String b)
+{
+    return a+b;
+}
+
 }

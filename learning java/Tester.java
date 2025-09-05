@@ -29,9 +29,14 @@ public class Tester {
         
         s1.cgpa = 5; //instance variable
         s1.increasecgpa(7);  //local variable
+
+        //method overloading
+        System.out.println(s1.addcgpa(4,5));
+        System.out.println(s1.addcgpa("Hello","Fahim"));
     }
     
 }
+
 //output
 // MARUF
 // 444
