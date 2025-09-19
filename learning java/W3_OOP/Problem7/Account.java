@@ -28,13 +28,13 @@ public class Account{
     public void deposit(int b) {
         
         this.balance = this.balance + b;
-        System.out.println("Deposit for "+ this.name+ " " +" Newbalance of the Account: " + this.balance);
+        System.out.println("Deposit for "+ name+ " " +" Newbalance of the Account: " + this.balance);
     }
 
     public void withdraw( int b) {
         
         this.balance = this.balance - b;
-         System.out.println("Withdraw "+ this.name+ " " +" Newbalance of the Account: " + this.balance);
+         System.out.println("Withdraw "+ name+ " " +" Newbalance of the Account: " + this.balance);
     }
     
 
