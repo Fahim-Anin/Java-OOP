@@ -6,7 +6,7 @@ public abstract class  Shape{
 {
     this.a = a;
     this.b= b;
-    System.out.println(a*b);
+    //System.out.println(a*b);
 }
 
     public abstract void area();

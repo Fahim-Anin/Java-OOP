@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Collections Guide: Array, ArrayList, Vector, LinkedList</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Simple syntax highlighting colors */
+        .code-keyword { color: #c586c0; }
+        .code-class { color: #4ec9b0; }
+        .code-string { color: #ce9178; }
+        .code-comment { color: #6a9955; }
+        .code-number { color: #b5cea8; }
+        .code-method { color: #dcdcaa; }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-300">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">Java Collections: A Deep Dive</h1>
+            <p class="text-lg text-cyan-400">Your Go-To Guide for Arrays, ArrayLists, Vectors, and LinkedLists</p>
+        </header>
+
+        <nav class="sticky top-0 bg-gray-900 bg-opacity-80 backdrop-blur-md z-10 py-4 mb-12 rounded-lg border border-gray-700">
+            <ul class="flex justify-center items-center gap-4 md:gap-8 flex-wrap">
+                <li><a href="#array" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-3 py-2 rounded-md">Array</a></li>
+                <li><a href="#arraylist" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-3 py-2 rounded-md">ArrayList</a></li>
+                <li><a href="#vector" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-3 py-2 rounded-md">Vector</a></li>
+                <li><a href="#linkedlist" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-3 py-2 rounded-md">LinkedList</a></li>
+                <li><a href="#synchronization" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-3 py-2 rounded-md">Synchronization</a></li>
+                <li><a href="#comparison" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-3 py-2 rounded-md">Comparison</a></li>
+            </ul>
+        </nav>
+
+        <main class="space-y-16">
+
+            <!-- Section 1: Array -->
+            <section id="array" class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 shadow-lg">
+                <h2 class="text-3xl font-bold text-white mb-4">1. Array 🥚</h2>
+                <p class="mb-6">An <code class="bg-gray-700 px-2 py-1 rounded">Array</code> is the most fundamental data structure in Java. It's a fixed-size container that holds items of the same data type in a contiguous block of memory.</p>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-xl font-semibold text-cyan-400 mb-3">Analogy: The Egg Carton</h3>
+                        <p class="mb-6">An egg carton has a fixed number of slots (its size), and you can only put eggs in it (same data type). You can instantly access the 3rd slot without checking the 1st or 2nd.</p>
+
+                        <h3 class="text-xl font-semibold text-cyan-400 mb-3">Key Characteristics</h3>
+                        <ul class="list-disc list-inside space-y-2 mb-6">
+                            <li><strong>Fixed Size:</strong> The size is defined at creation and can never be changed.</li>
+                            <li><strong>Same Data Type:</strong> All elements must be of the same type (e.g., all <code class="bg-gray-700 px-1 rounded">int</code> or all <code class="bg-gray-700 px-1 rounded">String</code>).</li>
+                            <li><strong>Performance:</strong> Accessing an element by its index is extremely fast (O(1)).</li>
+                            <li><strong>Primitives & Objects:</strong> Can store both primitive types and objects.</li>
+                        </ul>
+
+                        <h3 class="text-xl font-semibold text-cyan-400 mb-3">When to Use It</h3>
+                        <p class="bg-cyan-900 bg-opacity-50 border border-cyan-700 p-4 rounded-lg">Use an array when you know the **exact number of elements** beforehand and require the best performance for accessing them.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-white mb-3">Code Example</h3>
+                        <pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-java text-sm">
+<span class="code-comment">// Creation with a shortcut (initializer)</span>
+<span class="code-class">String</span>[] names = {<span class="code-string">"Alice"</span>, <span class="code-string">"Bob"</span>, <span class="code-string">"Charlie"</span>};
+
+<span class="code-comment">// Creation by defining size</span>
+<span class="code-keyword">int</span>[] numbers = <span class="code-keyword">new</span> <span class="code-keyword">int</span>[<span class="code-number">5</span>]; <span class="code-comment">// Can hold 5 integers</span>
+
+<span class="code-comment">// Accessing an element (very fast)</span>
+<span class="code-class">System</span>.out.<span class="code-method">println</span>(names[<span class="code-number">1</span>]); <span class="code-comment">// Output: Bob</span>
+
+<span class="code-comment">// Changing an element</span>
+names[<span class="code-number">2</span>] = <span class="code-string">"Charles"</span>;
+
+<span class="code-comment">// You CANNOT change its size</span>
+<span class="code-comment">// names.add("David"); // ERROR! No add method.</span>
+                        </code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: ArrayList -->
+            <section id="arraylist" class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 shadow-lg">
+                <h2 class="text-3xl font-bold text-white mb-4">2. ArrayList 📚</h2>
+                <p class="mb-6">An <code class="bg-gray-700 px-2 py-1 rounded">ArrayList</code> is a class from the Java Collections Framework. It's a **dynamic or resizable array** that automatically handles resizing when it runs out of space.</p>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-xl font-semibold text-cyan-400 mb-3">Analogy: The Ring Binder</h3>
+                        <p class="mb-6">You start with a certain number of pages, but you can always add more or remove existing ones as needed. It's flexible and organized.</p>
+                        
+                        <h3 class="text-xl font-semibold text-cyan-400 mb-3">Key Characteristics</h3>
+                        <ul class="list-disc list-inside space-y-2 mb-6">
+                            <li><strong>Dynamic Size:</strong> Grows and shrinks automatically.</li>
+                            <li><strong>Implements <code class="bg-gray-700 px-1 rounded">List</code>:</strong> Ordered collection, allows duplicates.</li>
+                            <li><strong>Performance:</strong> Fast access (O(1)), but slow middle insertion/deletion (O(n)).</li>
+                            <li><strong>Objects Only:</strong> Can only store objects (uses wrapper classes like <code class="bg-gray-700 px-1 rounded">Integer</code> for primitives).</li>
+                            <li><strong>Not Synchronized:</strong> Not thread-safe, which makes it faster.</li>
+                        </ul>
+
+                        <h3 class="text-xl font-semibold text-cyan-400 mb-3">When to Use It</h3>
+                        <p class="bg-cyan-900 bg-opacity-50 border border-cyan-700 p-4 rounded-lg"><code class="bg-gray-700 px-1 rounded">ArrayList</code> is your **default, go-to choice** for a list. Use it for general-purpose lists where you primarily access elements by index.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-white mb-3">Code Example</h3>
+                        <pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-java text-sm">
+<span class="code-comment">// Creation (must use 'new')</span>
+<span class="code-class">ArrayList</span>&lt;<span class="code-class">String</span>&gt; tasks = <span class="code-keyword">new</span> <span class="code-class">ArrayList</span>&lt;&gt;();
+
+<span class="code-comment">// Adding elements</span>
+tasks.<span class="code-method">add</span>(<span class="code-string">"Buy groceries"</span>);
+tasks.<span class="code-method">add</span>(<span class="code-string">"Pay bills"</span>);
+tasks.<span class="code-method">add</span>(<span class="code-string">"Call mom"</span>);
+
+<span class="code-comment">// Accessing an element</span>
+<span class="code-class">System</span>.out.<span class="code-method">println</span>(tasks.<span class="code-method">get</span>(<span class="code-number">0</span>)); <span class="code-comment">// Output: Buy groceries</span>
+
+<span class="code-comment">// Removing an element (can be slow)</span>
+tasks.<span class="code-method">remove</span>(<span class="code-number">1</span>); <span class="code-comment">// Removes "Pay bills"</span>
+
+<span class="code-class">System</span>.out.<span class="code-method">println</span>(tasks.<span class="code-method">size</span>()); <span class="code-comment">// Output: 2</span>
+                        </code></pre>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section 3: Vector -->
+            <section id="vector" class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 shadow-lg">
+                <h2 class="text-3xl font-bold text-white mb-4">3. Vector 🏛️</h2>
+                <p class="mb-6">A <code class="bg-gray-700 px-2 py-1 rounded">Vector</code> is nearly identical to an <code class="bg-gray-700 px-1 rounded">ArrayList</code>, but it is **synchronized**. This means it is thread-safe. It's a legacy class from the earliest versions of Java.</p>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-xl font-semibold text-cyan-400 mb-3">Analogy: The Library Archive Binder</h3>
+                        <p class="mb-6">The same ring binder, but kept in a library archive. Only one person (thread) is allowed to access and modify it at a time, making the process safer but slower.</p>
+                        
+                        <h3 class="text-xl font-semibold text-cyan-400 mb-3">Key Characteristics</h3>
+                        <ul class="list-disc list-inside space-y-2 mb-6">
+                            <li><strong>Synchronized:</strong> All of its methods are thread-safe, preventing data corruption from multiple threads.</li>
+                            <li><strong>Performance:</strong> Slower than <code class="bg-gray-700 px-1 rounded">ArrayList</code> due to the overhead of synchronization locks.</li>
+                            <li><strong>Legacy Class:</strong> Generally not recommended for new code.</li>
+                        </ul>
+
+                        <h3 class="text-xl font-semibold text-cyan-400 mb-3">When to Use It</h3>
+                        <p class="bg-red-900 bg-opacity-50 border border-red-700 p-4 rounded-lg">You should typically **avoid using <code class="bg-gray-700 px-1 rounded">Vector</code>** in new projects. It's mainly for maintaining older, legacy code. For thread-safety, wrap an <code class="bg-gray-700 px-1 rounded">ArrayList</code> instead.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-white mb-3">Code Example</h3>
+                        <pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-java text-sm">
+<span class="code-comment">// Creation</span>
+<span class="code-class">Vector</span>&lt;<span class="code-class">String</span>&gt; legacyItems = <span class="code-keyword">new</span> <span class="code-class">Vector</span>&lt;&gt;();
+
+<span class="code-comment">// Usage is identical to ArrayList</span>
+legacyItems.<span class="code-method">add</span>(<span class="code-string">"First Item"</span>);
+legacyItems.<span class="code-method">add</span>(<span class="code-string">"Second Item"</span>);
+
+<span class="code-class">System</span>.out.<span class="code-method">println</span>(legacyItems.<span class="code-method">get</span>(<span class="code-number">0</span>)); <span class="code-comment">// Output: First Item</span>
+                        </code></pre>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section 4: LinkedList -->
+            <section id="linkedlist" class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 shadow-lg">
+                <h2 class="text-3xl font-bold text-white mb-4">4. LinkedList 🔗</h2>
+                <p class="mb-6">A <code class="bg-gray-700 px-2 py-1 rounded">LinkedList</code> stores elements in a chain of **nodes**, where each node contains the data and pointers to the next and previous nodes.</p>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-xl font-semibold text-cyan-400 mb-3">Analogy: The Conga Line</h3>
+                        <p class="mb-6">To get to the 50th person, you have to move past the first 49. But inserting a new person in the middle is easy—you just break the chain and relink it.</p>
+                        
+                        <h3 class="text-xl font-semibold text-cyan-400 mb-3">Key Characteristics</h3>
+                        <ul class="list-disc list-inside space-y-2 mb-6">
+                            <li><strong>Node-Based Structure:</strong> Elements are not in a contiguous block of memory.</li>
+                            <li><strong>Performance:</strong> Slow index-based access (O(n)), but very fast insertion/deletion at ends and middle (O(1)).</li>
+                            <li><strong>Memory:</strong> Uses more memory than <code class="bg-gray-700 px-1 rounded">ArrayList</code> due to storing pointers.</li>
+                            <li><strong>Implements <code class="bg-gray-700 px-1 rounded">Deque</code>:</strong> Perfect for creating stacks and queues.</li>
+                        </ul>
+
+                        <h3 class="text-xl font-semibold text-cyan-400 mb-3">When to Use It</h3>
+                        <p class="bg-cyan-900 bg-opacity-50 border border-cyan-700 p-4 rounded-lg">Use a <code class="bg-gray-700 px-1 rounded">LinkedList</code> when you have a high number of **insertions and deletions** from the list, or if you need to implement a **Queue** or **Stack**.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-white mb-3">Code Example</h3>
+                        <pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-java text-sm">
+<span class="code-comment">// Creation</span>
+<span class="code-class">LinkedList</span>&lt;<span class="code-class">String</span>&gt; guestList = <span class="code-keyword">new</span> <span class="code-class">LinkedList</span>&lt;&gt;();
+
+<span class="code-comment">// Adding elements</span>
+guestList.<span class="code-method">add</span>(<span class="code-string">"John"</span>); <span class="code-comment">// Adds to the end</span>
+guestList.<span class="code-method">add</span>(<span class="code-string">"Mary"</span>); <span class="code-comment">// Adds to the end</span>
+
+<span class="code-comment">// Adding to the beginning is very fast</span>
+guestList.<span class="code-method">addFirst</span>(<span class="code-string">"VIP_Guest"</span>);
+
+<span class="code-comment">// Removing from the middle is fast</span>
+guestList.<span class="code-method">remove</span>(<span class="code-number">1</span>); <span class="code-comment">// Removes "John"</span>
+
+<span class="code-comment">// Accessing an element is slow</span>
+<span class="code-class">System</span>.out.<span class="code-method">println</span>(guestList.<span class="code-method">get</span>(<span class="code-number">1</span>)); <span class="code-comment">// Output: Mary</span>
+                        </code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Synchronization -->
+            <section id="synchronization" class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 shadow-lg">
+                <h2 class="text-3xl font-bold text-white mb-4">Deep Dive: Synchronization (ArrayList vs. Vector)</h2>
+                <p class="mb-6">This is the most critical difference between <code class="bg-gray-700 px-1 rounded">ArrayList</code> and <code class="bg-gray-700 px-1 rounded">Vector</code>. Understanding it explains why <code class="bg-gray-700 px-1 rounded">ArrayList</code> is the modern choice.</p>
+                
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-cyan-400 mb-3">Synchronization: The "Talking Stick" Rule 🗣️</h3>
+                        <p class="mb-4">Synchronization is like having a "talking stick." Only the person holding the stick is allowed to write on the paper.</p>
+                        <ul class="list-disc list-inside space-y-2 pl-4">
+                            <li><strong class="text-white">Vector uses this rule.</strong> Before <code class="bg-gray-700 px-1 rounded">Vector</code> lets anyone read or write, it gives them the talking stick. When they're done, they give it back. This ensures only one person (thread) can change the list at a time, preventing messy scribbles. This is called being **thread-safe**.</li>
+                            <li><strong class="text-white">ArrayList has NO talking stick.</strong> Anyone can grab the paper and write whenever they want. If multiple people try to write at the exact same time, they'll write over each other, and the list will become a jumbled, corrupted mess. This is **not thread-safe**.</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-semibold text-cyan-400 mb-3">The Performance Issue in Vector</h3>
+                        <p class="mb-4">Imagine you are the *only person* working on the to-do list. With <code class="bg-gray-700 px-1 rounded">Vector</code>, even though you're alone, you *still* have to go through the process of picking up the talking stick, writing your item, and putting it back down, every single time. This process of grabbing and returning the "stick" (called a lock) takes a little extra time and effort.</p>
+                        <p class="bg-red-900 bg-opacity-50 border border-red-700 p-4 rounded-lg">This is the performance issue: <code class="bg-gray-700 px-1 rounded">Vector</code> is slower because it always enforces the talking-stick rule, even when it's not necessary (like when only one thread is using it).</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-semibold text-cyan-400 mb-3">The Synchronization Issue in ArrayList</h3>
+                        <p class="mb-4">The "issue" with <code class="bg-gray-700 px-1 rounded">ArrayList</code> only appears when you have more than one person (multiple threads) trying to change it at the same time. This can cause a **race condition**.</p>
+                        <div class="bg-gray-900 p-4 rounded-lg border border-gray-700">
+                            <p class="font-mono text-sm">Imagine an ArrayList has one item: <code class="text-white">["Apple"]</code>.</p>
+                            <ol class="list-decimal list-inside mt-2 space-y-1 font-mono text-sm">
+                                <li><strong>Thread 1</strong> wants to add "Banana". It sees the next open spot is position #2.</li>
+                                <li>At the *exact same microsecond*, <strong>Thread 2</strong> wants to add "Cherry". It also sees the next open spot is position #2.</li>
+                                <li>Thread 1 starts writing "Banana" in position #2.</li>
+                                <li>Thread 2, not knowing Thread 1 just wrote there, immediately writes "Cherry" in the exact same spot.</li>
+                            </ol>
+                            <p class="font-mono text-sm mt-3"><strong>Result:</strong> "Cherry" overwrites "Banana". The list is now <code class="text-white">["Apple", "Cherry"]</code>. "Banana" is lost forever. A <code class="bg-gray-700 px-1 rounded">Vector</code> would have prevented this.</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-semibold text-cyan-400 mb-3">The Modern Solution: The "Librarian" Analogy 🧑‍🏫</h3>
+                        <p class="mb-4">The modern Java philosophy is "pay for what you use." You don't need a full-time security guard if you're the only one in the building.</p>
+                        <ul class="list-disc list-inside space-y-2 pl-4 mb-4">
+                            <li>The <strong class="text-white">ArrayList is the shared notebook.</strong> By itself, it has no rules. It's fast but vulnerable.</li>
+                            <li>You solve the problem by hiring a strict <strong class="text-white">librarian (`Collections.synchronizedList()`)</strong> to manage the notebook only when you need group access.</li>
+                        </ul>
+                        <pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-java text-sm">
+<span class="code-comment">// 1. You create the fast, but unsafe, notebook</span>
+<span class="code-class">List</span>&lt;<span class="code-class">String</span>&gt; myArrayList = <span class="code-keyword">new</span> <span class="code-class">ArrayList</span>&lt;&gt;();
+
+<span class="code-comment">// 2. You hire a librarian to protect it WHEN you need it</span>
+<span class="code-class">List</span>&lt;<span class="code-class">String</span>&gt; safeList = <span class="code-class">Collections</span>.<span class="code-method">synchronizedList</span>(myArrayList);
+                        </code></pre>
+                        <p class="mt-4 bg-cyan-900 bg-opacity-50 border border-cyan-700 p-4 rounded-lg">This approach gives you high performance by default and allows you to add the safety feature only when required. It's more efficient and flexible.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Comparison Table -->
+            <section id="comparison" class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 shadow-lg">
+                <h2 class="text-3xl font-bold text-white mb-6">Overall Comparison at a Glance</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-gray-700">
+                            <tr>
+                                <th class="p-4 border border-gray-600 font-semibold text-white">Feature</th>
+                                <th class="p-4 border border-gray-600 font-semibold text-white">Array</th>
+                                <th class="p-4 border border-gray-600 font-semibold text-white">ArrayList</th>
+                                <th class="p-4 border border-gray-600 font-semibold text-white">Vector</th>
+                                <th class="p-4 border border-gray-600 font-semibold text-white">LinkedList</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-gray-800 hover:bg-gray-700 transition-colors">
+                                <td class="p-4 border border-gray-600 font-semibold text-cyan-400">Internal Structure</td>
+                                <td class="p-4 border border-gray-600">Contiguous Array</td>
+                                <td class="p-4 border border-gray-600">Dynamic Array</td>
+                                <td class="p-4 border border-gray-600">Dynamic Array</td>
+                                <td class="p-4 border border-gray-600">Nodes with Pointers</td>
+                            </tr>
+                            <tr class="bg-gray-800 hover:bg-gray-700 transition-colors">
+                                <td class="p-4 border border-gray-600 font-semibold text-cyan-400">Sizing</td>
+                                <td class="p-4 border border-gray-600 font-bold text-white">Fixed</td>
+                                <td class="p-4 border border-gray-600">Dynamic</td>
+                                <td class="p-4 border border-gray-600">Dynamic</td>
+                                <td class="p-4 border border-gray-600">Dynamic</td>
+                            </tr>
+                            <tr class="bg-gray-800 hover:bg-gray-700 transition-colors">
+                                <td class="p-4 border border-gray-600 font-semibold text-cyan-400">Access (get)</td>
+                                <td class="p-4 border border-gray-600 font-bold text-green-400">Fast (O(1))</td>
+                                <td class="p-4 border border-gray-600 font-bold text-green-400">Fast (O(1))</td>
+                                <td class="p-4 border border-gray-600 font-bold text-green-400">Fast (O(1))</td>
+                                <td class="p-4 border border-gray-600 font-bold text-red-400">Slow (O(n))</td>
+                            </tr>
+                            <tr class="bg-gray-800 hover:bg-gray-700 transition-colors">
+                                <td class="p-4 border border-gray-600 font-semibold text-cyan-400">Insertion/Deletion</td>
+                                <td class="p-4 border border-gray-600">N/A</td>
+                                <td class="p-4 border border-gray-600 font-bold text-red-400">Slow (middle)</td>
+                                <td class="p-4 border border-gray-600 font-bold text-red-400">Slow (middle)</td>
+                                <td class="p-4 border border-gray-600 font-bold text-green-400">Fast (O(1))</td>
+                            </tr>
+                            <tr class="bg-gray-800 hover:bg-gray-700 transition-colors">
+                                <td class="p-4 border border-gray-600 font-semibold text-cyan-400">Thread Safety</td>
+                                <td class="p-4 border border-gray-600">N/A</td>
+                                <td class="p-4 border border-gray-600 font-bold text-red-400">No (Not Sync)</td>
+                                <td class="p-4 border border-gray-600 font-bold text-green-400">Yes (Synchronized)</td>
+                                <td class="p-4 border border-gray-600 font-bold text-red-400">No (Not Sync)</td>
+                            </tr>
+                            <tr class="bg-gray-800 hover:bg-gray-700 transition-colors">
+                                <td class="p-4 border border-gray-600 font-semibold text-cyan-400">Best Use Case</td>
+                                <td class="p-4 border border-gray-600">Max speed, known size</td>
+                                <td class="p-4 border border-gray-600 font-bold text-white">Default List</td>
+                                <td class="p-4 border border-gray-600">Legacy code</td>
+                                <td class="p-4 border border-gray-600">Frequent Insert/Delete</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="text-center mt-12 pt-8 border-t border-gray-700">
+            <p class="text-gray-500">Document generated to clarify core Java Collection concepts.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
+
