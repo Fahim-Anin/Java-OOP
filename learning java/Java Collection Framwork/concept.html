@@ -37,12 +37,12 @@
                 <li><a href="#linkedlist" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-3 py-2 rounded-md">LinkedList</a></li>
                 <li><a href="#synchronization" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-3 py-2 rounded-md">Synchronization</a></li>
                 <li><a href="#comparison" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-3 py-2 rounded-md">Comparison</a></li>
+                <li><a href="#comparator" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-3 py-2 rounded-md">Comparator</a></li>
             </ul>
         </nav>
 
         <main class="space-y-16">
 
-            <!-- Section 1: Array -->
             <section id="array" class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 shadow-lg">
                 <h2 class="text-3xl font-bold text-white mb-4">1. Array 🥚</h2>
                 <p class="mb-6">An <code class="bg-gray-700 px-2 py-1 rounded">Array</code> is the most fundamental data structure in Java. It's a fixed-size container that holds items of the same data type in a contiguous block of memory.</p>
@@ -84,7 +84,6 @@ names[<span class="code-number">2</span>] = <span class="code-string">"Charles"<
                 </div>
             </section>
 
-            <!-- Section 2: ArrayList -->
             <section id="arraylist" class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 shadow-lg">
                 <h2 class="text-3xl font-bold text-white mb-4">2. ArrayList 📚</h2>
                 <p class="mb-6">An <code class="bg-gray-700 px-2 py-1 rounded">ArrayList</code> is a class from the Java Collections Framework. It's a **dynamic or resizable array** that automatically handles resizing when it runs out of space.</p>
@@ -128,7 +127,6 @@ tasks.<span class="code-method">remove</span>(<span class="code-number">1</span>
                 </div>
             </section>
             
-            <!-- Section 3: Vector -->
             <section id="vector" class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 shadow-lg">
                 <h2 class="text-3xl font-bold text-white mb-4">3. Vector 🏛️</h2>
                 <p class="mb-6">A <code class="bg-gray-700 px-2 py-1 rounded">Vector</code> is nearly identical to an <code class="bg-gray-700 px-1 rounded">ArrayList</code>, but it is **synchronized**. This means it is thread-safe. It's a legacy class from the earliest versions of Java.</p>
@@ -163,7 +161,6 @@ legacyItems.<span class="code-method">add</span>(<span class="code-string">"Seco
                 </div>
             </section>
             
-            <!-- Section 4: LinkedList -->
             <section id="linkedlist" class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 shadow-lg">
                 <h2 class="text-3xl font-bold text-white mb-4">4. LinkedList 🔗</h2>
                 <p class="mb-6">A <code class="bg-gray-700 px-2 py-1 rounded">LinkedList</code> stores elements in a chain of **nodes**, where each node contains the data and pointers to the next and previous nodes.</p>
@@ -206,7 +203,6 @@ guestList.<span class="code-method">remove</span>(<span class="code-number">1</s
                 </div>
             </section>
 
-            <!-- Section 5: Synchronization -->
             <section id="synchronization" class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 shadow-lg">
                 <h2 class="text-3xl font-bold text-white mb-4">Deep Dive: Synchronization (ArrayList vs. Vector)</h2>
                 <p class="mb-6">This is the most critical difference between <code class="bg-gray-700 px-1 rounded">ArrayList</code> and <code class="bg-gray-700 px-1 rounded">Vector</code>. Understanding it explains why <code class="bg-gray-700 px-1 rounded">ArrayList</code> is the modern choice.</p>
@@ -261,7 +257,6 @@ guestList.<span class="code-method">remove</span>(<span class="code-number">1</s
                 </div>
             </section>
 
-            <!-- Section 6: Comparison Table -->
             <section id="comparison" class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 shadow-lg">
                 <h2 class="text-3xl font-bold text-white mb-6">Overall Comparison at a Glance</h2>
                 <div class="overflow-x-auto">
@@ -322,6 +317,63 @@ guestList.<span class="code-method">remove</span>(<span class="code-number">1</s
                     </table>
                 </div>
             </section>
+
+            <section id="comparator" class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 shadow-lg">
+                <h2 class="text-3xl font-bold text-white mb-4">Comparator: Custom Sorting Logic 🧠</h2>
+                <p class="mb-6">Sometimes, the default "natural" order isn't what you need. A <code class="bg-gray-700 px-2 py-1 rounded">Comparator</code> is a separate object that acts like a "rule book" for sorting. You provide this rule book to <code class="bg-gray-700 px-1 rounded">Collections.sort()</code>, telling it exactly how to compare any two elements. This is a powerful demonstration of the **Strategy Design Pattern**.</p>
+                
+                <h3 class="text-2xl font-semibold text-cyan-400 mb-3">The `compare(a, b)` Contract: The Referee's Decision ⚖️</h3>
+                <p class="mb-4">The core of a Comparator is its <code class="bg-gray-700 px-1 rounded">compare(T a, T b)</code> method. It looks at two items, `a` and `b`, and returns an integer that tells the sorting algorithm their relationship:</p>
+                <ul class="list-disc list-inside space-y-2 pl-4 mb-6">
+                    <li>Returns a <strong class="text-red-400">Negative Number (-1)</strong>: This means `a` is "less than" `b` and should come **before** `b` in the sorted list.</li>
+                    <li>Returns a <strong class="text-green-400">Positive Number (1)</strong>: This means `a` is "greater than" `b` and should come **after** `b`.</li>
+                    <li>Returns <strong class="text-white">Zero (0)</strong>: This means `a` and `b` are "equal" for sorting purposes. Their relative order doesn't need to change.</li>
+                </ul>
+
+                <div class="grid md:grid-cols-2 gap-8 items-start">
+                    <div>
+                        <h3 class="text-xl font-semibold text-cyan-400 mb-3">Step-by-Step Execution & Polymorphism</h3>
+                        <p class="mb-4">Here’s how `Collections.sort(nums, com)` executes, showcasing polymorphism:</p>
+                        <ol class="list-decimal list-inside space-y-3">
+                            <li><strong class="text-white">The Call:</strong> You call `Collections.sort()`, passing your list of materials (`nums`) and your specialist consultant (`com`).</li>
+                            <li><strong class="text-white">The Algorithm Starts:</strong> A highly optimized sorting algorithm (like TimSort) begins. It has a generic plan but doesn't know your specific rules. It picks two elements to compare, for example, `42` and `51`.</li>
+                            <li><strong class="text-white">The Polymorphic "Callback":</strong> This is the magic. The generic algorithm doesn't have your logic built-in. It only knows it has a `Comparator` object. It invokes the `compare` method on the object you provided: <code class="bg-gray-700 px-1 rounded">com.compare(42, 51)</code>.</li>
+                            <li><strong class="text-white">Your Logic Executes:</strong> Control transfers to *your* code. It calculates `42 % 10` (which is 2) and `51 % 10` (which is 1). The condition `if (2 > 1)` is true, and your method returns `1`.</li>
+                            <li><strong class="text-white">The Algorithm Gets the Answer:</strong> The algorithm receives the integer `1`. It interprets this as: "`42` is greater than `51` and must be placed *after* it."</li>
+                            <li><strong class="text-white">Repeat:</strong> The algorithm uses this decision and continues this process—picking pairs and consulting your `com` object—until the entire list is perfectly sorted according to your rules.</li>
+                        </ol>
+                        <p class="mt-6 bg-cyan-900 bg-opacity-50 border border-cyan-700 p-4 rounded-lg"><strong>The Power of Polymorphism:</strong> The `sort` method is coded to work with the `Comparator` **interface**, not your specific implementation. At runtime, the JVM directs the `compare` call to whichever object you passed in. You can plug in different `Comparator` objects (different strategies) to the exact same `sort` method to produce completely different outcomes. This is polymorphism in action.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-white mb-3">Code Example: Sorting by Last Digit</h3>
+                        <pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto"><code class="language-java text-sm">
+<span class="code-class">List</span>&lt;<span class="code-class">Integer</span>&gt; nums = <span class="code-keyword">new</span> <span class="code-class">ArrayList</span>&lt;&gt;();
+nums.<span class="code-method">add</span>(<span class="code-number">42</span>); <span class="code-comment">// last digit: 2</span>
+nums.<span class="code-method">add</span>(<span class="code-number">51</span>); <span class="code-comment">// last digit: 1</span>
+nums.<span class="code-method">add</span>(<span class="code-number">48</span>); <span class="code-comment">// last digit: 8</span>
+nums.<span class="code-method">add</span>(<span class="code-number">39</span>); <span class="code-comment">// last digit: 9</span>
+
+<span class="code-comment">// 1. Create the "rule book" object</span>
+<span class="code-class">Comparator</span>&lt;<span class="code-class">Integer</span>&gt; com = <span class="code-keyword">new</span> <span class="code-class">Comparator</span>&lt;<span class="code-class">Integer</span>&gt;() {
+    <span class="code-comment">// Override the compare method with our logic</span>
+    <span class="code-keyword">public</span> <span class="code-keyword">int</span> <span class="code-method">compare</span>(<span class="code-class">Integer</span> i, <span class="code-class">Integer</span> j) {
+        <span class="code-keyword">if</span> (i % <span class="code-number">10</span> &gt; j % <span class="code-number">10</span>) {
+            <span class="code-keyword">return</span> <span class="code-number">1</span>;  <span class="code-comment">// i comes after j</span>
+        } <span class="code-keyword">else</span> {
+            <span class="code-keyword">return</span> -<span class="code-number">1</span>; <span class="code-comment">// i comes before j</span>
+        }
+    }
+};
+
+<span class="code-comment">// 2. Pass the list and the rule book to the sorter</span>
+<span class="code-class">Collections</span>.<span class="code-method">sort</span>(nums, com);
+
+<span class="code-comment">// List will be sorted by last digit: 1, 2, 8, 9</span>
+<span class="code-class">System</span>.out.<span class="code-method">println</span>(nums); <span class="code-comment">// Output: [51, 42, 48, 39]</span>
+                        </code></pre>
+                    </div>
+                </div>
+            </section>
         </main>
         
         <footer class="text-center mt-12 pt-8 border-t border-gray-700">
@@ -331,4 +383,3 @@ guestList.<span class="code-method">remove</span>(<span class="code-number">1</s
 
 </body>
 </html>
-
