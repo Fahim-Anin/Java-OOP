@@ -15,11 +15,11 @@ public class Fibonacci {
         // Loop starts from 2 because the first two terms are already printed.
         // It runs until it has printed 'n' terms in total.
         for (int i = 2; i < n; i++) {
-            // Calculate the next term
+            // Calculate the link term
             int nextTerm = firstTerm + secondTerm;
             System.out.print(" " + nextTerm);
             
-            // Update the terms for the next iteration
+            // Update the terms for the link iteration
             firstTerm = secondTerm;
             secondTerm = nextTerm;
         }

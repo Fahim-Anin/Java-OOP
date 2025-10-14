@@ -35,6 +35,7 @@
                 <li><a href="#arraylist" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-3 py-2 rounded-md">ArrayList</a></li>
                 <li><a href="#vector" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-3 py-2 rounded-md">Vector</a></li>
                 <li><a href="#linkedlist" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-3 py-2 rounded-md">LinkedList</a></li>
+                <li><a href="#maps-hashing" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-3 py-2 rounded-md font-bold">Maps & Hashing</a></li>
                 <li><a href="#synchronization" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-3 py-2 rounded-md">Synchronization</a></li>
                 <li><a href="#comparison" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-3 py-2 rounded-md">Comparison</a></li>
                 <li><a href="#comparator" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-3 py-2 rounded-md">Comparator</a></li>
@@ -163,7 +164,7 @@ legacyItems.<span class="code-method">add</span>(<span class="code-string">"Seco
             
             <section id="linkedlist" class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 shadow-lg">
                 <h2 class="text-3xl font-bold text-white mb-4">4. LinkedList 🔗</h2>
-                <p class="mb-6">A <code class="bg-gray-700 px-2 py-1 rounded">LinkedList</code> stores elements in a chain of **nodes**, where each node contains the data and pointers to the next and previous nodes.</p>
+                <p class="mb-6">A <code class="bg-gray-700 px-2 py-1 rounded">LinkedList</code> stores elements in a chain of **nodes**, where each node contains the data and pointers to the link and previous nodes.</p>
                 <div class="grid md:grid-cols-2 gap-8 items-center">
                     <div>
                         <h3 class="text-xl font-semibold text-cyan-400 mb-3">Analogy: The Conga Line</h3>
@@ -203,6 +204,100 @@ guestList.<span class="code-method">remove</span>(<span class="code-number">1</s
                 </div>
             </section>
 
+            <section id="maps-hashing" class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 shadow-lg">
+                <h2 class="text-3xl font-bold text-white mb-6">5. Maps, Sets, and Hashing: The Filing System 🗄️</h2>
+                <p class="mb-10">This section breaks down the concepts behind Java's other major collection types. It all starts with the idea of a Map and a Set, which are like blueprints. Then we'll see the engine that makes them fast (Hashing), and finally look at the different tools you can build with them.</p>
+
+                <div class="space-y-12">
+                    
+                    <div>
+                        <h3 class="text-2xl font-semibold text-cyan-400 mb-4 border-b-2 border-cyan-700 pb-2">The Blueprints: Map & Set</h3>
+                        <div class="grid md:grid-cols-2 gap-8 mt-4">
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2">Map 🗺️</h4>
+                                <p><strong class="text-cyan-300">Easy Term:</strong> A dictionary.</p>
+                                <p class="mt-2">A Map's job is to store **key-value pairs**. For every unique key (like a word), there is a corresponding value (like its definition). You use the key to instantly look up the value. It's the blueprint for any data structure that associates one thing with another.</p>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2">Set 📜</h4>
+                                <p><strong class="text-cyan-300">Easy Term:</strong> A guest list.</p>
+                                <p class="mt-2">A Set's job is to store a collection of **unique items**. It does not allow any duplicates. Its main purpose is to let you quickly check if an item exists in the collection, not to store extra information about it.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-semibold text-cyan-400 mb-4 border-b-2 border-cyan-700 pb-2">The Engine: Hashing</h3>
+                        <div class="space-y-6 mt-4">
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2">Hashing & Hash Function ⚙️</h4>
+                                <p><strong class="text-cyan-300">Easy Term:</strong> Creating a "shortcut address" for your data.</p>
+                                <p class="mt-2 mb-4">Imagine a giant library with thousands of shelves. Finding a book would be slow if you had to check every shelf. Hashing is the system the library uses to make this fast.</p>
+                                <ul class="list-disc list-inside space-y-2">
+                                    <li>A <strong class="text-white">Hash Function</strong> is the librarian's rule. For example, the rule could be "take the author's last initial."</li>
+                                    <li>The data is the book, like "Moby Dick" by "Melville."</li>
+                                    <li>The Hash Function (the rule) is applied to "Melville", and it produces a <strong class="text-white">Hash Code</strong> (the address), which is 'M'.</li>
+                                    <li>The book is then stored on the 'M' shelf. Now, to find it later, you don't need to search—you just apply the rule again and go directly to the 'M' shelf.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2">Hash Table (The Filing Cabinet)</h4>
+                                <p><strong class="text-cyan-300">Easy Term:</strong> The physical storage organized by hash codes.</p>
+                                <p class="mt-2">A Hash Table is the data structure that uses this system. It's like the set of shelves in the library. It has many "buckets" or "slots." When you add data, its hash code determines which bucket it goes into. This makes adding and finding data extremely fast, usually in O(1) time.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-semibold text-cyan-400 mb-4 border-b-2 border-cyan-700 pb-2">The Tools: Concrete Implementations</h3>
+                        <div class="space-y-8 mt-4">
+
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2">HashMap</h4>
+                                <p><strong class="text-cyan-300">Analogy:</strong> A super-fast, modern dictionary.</p>
+                                <p class="mt-2">This is the most common implementation of the <code class="bg-gray-700 px-1 rounded">Map</code> blueprint. It uses a **Hash Table** internally to store its key-value pairs. Because of hashing, it can add, remove, and retrieve items by key incredibly quickly. It is not synchronized.</p>
+                                <pre class="bg-gray-900 p-4 rounded-lg mt-3"><code class="language-java text-sm">
+<span class="code-class">Map</span>&lt;<span class="code-class">String</span>, <span class="code-class">Integer</span>&gt; studentScores = <span class="code-keyword">new</span> <span class="code-class">HashMap</span>&lt;&gt;();
+studentScores.<span class="code-method">put</span>(<span class="code-string">"Alice"</span>, <span class="code-number">95</span>); <span class="code-comment">// Hashing "Alice" to find where to store 95</span>
+studentScores.<span class="code-method">put</span>(<span class="code-string">"Bob"</span>, <span class="code-number">88</span>);
+<span class="code-keyword">int</span> alicesScore = studentScores.<span class="code-method">get</span>(<span class="code-string">"Alice"</span>); <span class="code-comment">// Hashing "Alice" again to find 95 instantly</span>
+                                </code></pre>
+                            </div>
+
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2">HashSet</h4>
+                                <p><strong class="text-cyan-300">Analogy:</strong> A guest list that uses the fast dictionary system.</p>
+                                <p class="mt-2">This is the most common implementation of the <code class="bg-gray-700 px-1 rounded">Set</code> blueprint. The secret is that a <code class="bg-gray-700 px-1 rounded">HashSet</code> is just a <code class="bg-gray-700 px-1 rounded">HashMap</code> in disguise. When you add an item like "Apple", the HashSet stores it as a key in an internal HashMap and uses a dummy placeholder for the value. Since HashMaps can't have duplicate keys, the HashSet automatically enforces uniqueness!</p>
+                                <pre class="bg-gray-900 p-4 rounded-lg mt-3"><code class="language-java text-sm">
+<span class="code-class">Set</span>&lt;<span class="code-class">String</span>&gt; uniqueFruits = <span class="code-keyword">new</span> <span class="code-class">HashSet</span>&lt;&gt;();
+uniqueFruits.<span class="code-method">add</span>(<span class="code-string">"Apple"</span>); <span class="code-comment">// Internally: map.put("Apple", DUMMY_VALUE)</span>
+uniqueFruits.<span class="code-method">add</span>(<span class="code-string">"Banana"</span>);
+uniqueFruits.<span class="code-method">add</span>(<span class="code-string">"Apple"</span>); <span class="code-comment">// This is ignored because the key "Apple" already exists</span>
+<span class="code-class">System</span>.out.<span class="code-method">println</span>(uniqueFruits.<span class="code-method">size</span>()); <span class="code-comment">// Output: 2</span>
+                                </code></pre>
+                            </div>
+
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2">LinkedHashMap</h4>
+                                <p><strong class="text-cyan-300">Analogy:</strong> A travel itinerary.</p>
+                                <p class="mt-2">A <code class="bg-gray-700 px-1 rounded">LinkedHashMap</code> is a <code class="bg-gray-700 px-1 rounded">HashMap</code> that also remembers the **order** in which you inserted items. It has the speed of a HashMap, but when you iterate over it, the items appear in the sequence you added them. Like an itinerary, you can jump to any specific day's plan (fast access), but you can also read the plan from Day 1 to the end in order.</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2">TreeMap</h4>
+                                <p><strong class="text-cyan-300">Analogy:</strong> A perfectly sorted phone book.</p>
+                                <p class="mt-2">A <code class="bg-gray-700 px-1 rounded">TreeMap</code> is a Map that always keeps its keys in **sorted order**. This is not based on hashing, but on a tree structure (specifically, a Red-Black Tree). It's slightly slower than a HashMap for general adding and getting, but it's fantastic when you need to retrieve keys in a sorted fashion.</p>
+                            </div>
+
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2">ConcurrentHashMap</h4>
+                                <p><strong class="text-cyan-300">Analogy:</strong> A modern library with many sections, each with its own librarian.</p>
+                                <p class="mt-2">This is the modern, high-performance, thread-safe version of a HashMap. Unlike the old <code class="bg-gray-700 px-1 rounded">Hashtable</code> which had one big lock for the entire collection (one librarian for the whole library), a <code class="bg-gray-700 px-1 rounded">ConcurrentHashMap</code> uses many smaller locks for different sections of the data. This means multiple threads can read and write to different sections at the same time without waiting for each other, leading to much better performance in multi-threaded applications.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <section id="synchronization" class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 shadow-lg">
                 <h2 class="text-3xl font-bold text-white mb-4">Deep Dive: Synchronization (ArrayList vs. Vector)</h2>
                 <p class="mb-6">This is the most critical difference between <code class="bg-gray-700 px-1 rounded">ArrayList</code> and <code class="bg-gray-700 px-1 rounded">Vector</code>. Understanding it explains why <code class="bg-gray-700 px-1 rounded">ArrayList</code> is the modern choice.</p>
@@ -229,8 +324,8 @@ guestList.<span class="code-method">remove</span>(<span class="code-number">1</s
                         <div class="bg-gray-900 p-4 rounded-lg border border-gray-700">
                             <p class="font-mono text-sm">Imagine an ArrayList has one item: <code class="text-white">["Apple"]</code>.</p>
                             <ol class="list-decimal list-inside mt-2 space-y-1 font-mono text-sm">
-                                <li><strong>Thread 1</strong> wants to add "Banana". It sees the next open spot is position #2.</li>
-                                <li>At the *exact same microsecond*, <strong>Thread 2</strong> wants to add "Cherry". It also sees the next open spot is position #2.</li>
+                                <li><strong>Thread 1</strong> wants to add "Banana". It sees the link open spot is position #2.</li>
+                                <li>At the *exact same microsecond*, <strong>Thread 2</strong> wants to add "Cherry". It also sees the link open spot is position #2.</li>
                                 <li>Thread 1 starts writing "Banana" in position #2.</li>
                                 <li>Thread 2, not knowing Thread 1 just wrote there, immediately writes "Cherry" in the exact same spot.</li>
                             </ol>
