@@ -1,51 +1,59 @@
-// File: reverse.java
 
-public class reverse {
-    // The head of the list. It's the entry point to our list.
-    Listnode head;
+import java.util.Scanner;
+class ListNode{
+    int value;
+    ListNode next;
 
-    /**
-     * Reverses the linked list using the iterative three-pointer approach.
-     */
-    public void reverse() {
-        Listnode previous = null;
-        Listnode current = head;
-        Listnode nextNode = null;
+    public ListNode(int value)
+    {
+        this.value = value;
 
-        while (current != null) {
-            // Save the link node before we break the link
-            nextNode = current.link;
+    }
+}
 
-            // Reverse the link for the current node
-            current.link = previous;
+public class reverse{
 
-            // Move both 'previous' and 'current' pointers one step forward
-            previous = current;
-            current = nextNode;
+   public static ListNode buildlist(Scanner scanner)
+   {
+    ListNode head= new ListNode(0);
+    ListNode current = head;
+
+    while(scanner.hasNextInt())
+    {
+        int input = scanner.nextInt();
+        if(input ==-1)
+        {
+            break;
         }
-
-        // After the loop, 'previous' is the new head. Update it.
-        head = previous;
+        current.next  = new ListNode(input);
+        current= current.next;
     }
+    return head.next;
+   }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ListNode l = buildlist(scanner);
 
-    /**
-     * Pushes a new node to the front of the list.
-     */
-    public void push(int newData) {
-        Listnode newNode = new Listnode(newData);
-        newNode.link = head;
-        head = newNode;
-    }
+        ListNode current = l;
+        ListNode prev= null;
+        ListNode n = null;
 
-    /**
-     * Prints the contents of the linked list from head to tail.
-     */
-    public void printList() {
-        Listnode temp = head;
-        while (temp != null) {
-            System.out.print(temp.data + " -> ");
-            temp = temp.link;
+        while(current != null)
+        {
+            n = current.next;
+            current.next = prev;
+            prev = current;
+            current = n;
         }
-        System.out.println("NULL");
+        
+        while(prev!= null)
+        {   
+           
+            System.out.print(prev.value + " ->");
+             prev = prev.next;
+            
+        }
+        System.out.println("null");
     }
+    
 }
