@@ -43,15 +43,15 @@ public class inputtype2{
        ListNode temp = dummy;
        while(t1 != null && t2!= null)
        {
-        if(t1.val>t2.val)
+        if(t1.val>=t2.val)
         {
             temp.next = t2;
             t2= t2.next;
         }
         else if(t1.val<t2.val)
         {
-            temp.next = t2;
-            t2= t2.next;
+            temp.next = t1;
+            t1= t1.next;
         }
         temp = temp.next;
        }
@@ -64,11 +64,15 @@ public class inputtype2{
         temp.next = t2;
        }
 
-       while(dummy != null)
-       {
-        System.out.println(dummy.val +" "+ " ->");
-        dummy= dummy.next;
-       }
+      ListNode current = dummy.next; // Start from the first actual node
+        while (current != null) {
+            System.out.print(current.val);
+            current = current.next;
+            if (current != null) {
+                System.out.print(" -> ");
+            }
+        }
+        System.out.println();
 
     }
 }
